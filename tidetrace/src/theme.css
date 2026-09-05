@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap');
+
+/*
+  Shared design tokens for the TideTrace brand: the ocean/teal/amber palette,
+  fonts, and base resets used by both src/login and src/dashboard-home.
+  Colors that differ by context (e.g. "muted text" is light on the dark
+  login screen but dark on the light dashboard sections) are NOT here —
+  each folder scopes those locally so the two don't fight over the same
+  variable name. See the top of login.css and dashboard-home.css.
+*/
+
+:root {
+  --ocean-950: #071b2c;
+  --ocean-900: #0c2c47;
+  --ocean-800: #15426a;
+
+  --teal-300: #8fded3;
+  --teal-400: #5fc9bd;
+  --teal-500: #2f9e93;
+
+  --amber-300: #f4c988;
+  --amber-400: #eeae5c;
+  --amber-500: #d99640;
+
+  --foam: #f8faf9;
+  --ink: #0b2438;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--foam);
+  color: var(--ink);
+  font-family: "Inter", Arial, sans-serif;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}

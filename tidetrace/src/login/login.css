@@ -1,0 +1,486 @@
+/* ================= APP SHELL ================= */
+
+.app {
+  /* Scoped tokens: on this dark screen "muted"/"line" need to read as
+     light-on-dark, which differs from dashboard-home's light-section values. */
+  --line: rgba(255, 255, 255, 0.14);
+  --muted: rgba(247, 250, 249, 0.7);
+
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(95, 201, 189, 0.16), transparent),
+    linear-gradient(180deg, var(--ocean-950) 0%, var(--ocean-900) 55%, var(--ocean-800) 100%);
+  color: var(--foam);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  padding-bottom: 60px;
+}
+
+.auth-bg-waves {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 34vh;
+  min-height: 220px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.auth-wave {
+  animation: auth-drift 26s ease-in-out infinite;
+}
+.auth-wave-1 {
+  fill: rgba(95, 201, 189, 0.16);
+  animation-duration: 22s;
+}
+.auth-wave-2 {
+  fill: rgba(47, 158, 147, 0.16);
+  animation-duration: 30s;
+  animation-direction: reverse;
+}
+.auth-wave-3 {
+  fill: rgba(11, 36, 56, 0.55);
+  animation-duration: 36s;
+}
+
+@keyframes auth-drift {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-3%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-wave {
+    animation: none;
+  }
+}
+
+/* ================= LOGO ================= */
+
+.auth-logo {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 72px;
+}
+
+.auth-logo-mark {
+  width: 56px;
+  height: 36px;
+  color: var(--teal-400);
+}
+
+.auth-logo h1 {
+  margin: 14px 0 6px;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+.auth-logo p {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+}
+
+/* ================= CARD ================= */
+
+.form-card {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 60px -25px rgba(2, 10, 20, 0.6);
+}
+
+/* ================= LOGIN ================= */
+
+.login-card {
+  width: 380px;
+  padding: 38px 40px 34px;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.login-card h2 {
+  margin: 0 0 6px;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.card-sub {
+  margin: 0 0 26px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 7px 2px;
+  color: var(--muted);
+}
+
+.app input {
+  width: 100%;
+  height: 44px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--foam);
+  color: var(--ink);
+  padding: 0 14px;
+  outline: none;
+  font-size: 14px;
+  font-family: inherit;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.app input::placeholder {
+  color: #7c8a94;
+}
+
+.app input:focus {
+  border-color: var(--teal-400);
+  box-shadow: 0 0 0 3px rgba(95, 201, 189, 0.28);
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap input {
+  padding-right: 44px;
+}
+
+.toggle-eye {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: #7c8a94;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.toggle-eye:hover {
+  color: var(--ink);
+  background: rgba(11, 36, 56, 0.06);
+}
+
+.options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 0 22px;
+  font-size: 13px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.remember input {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--teal-400);
+}
+
+.forgot-link {
+  border: none;
+  background: transparent;
+  color: var(--teal-300);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.orange-btn {
+  width: 100%;
+  height: 44px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--amber-300), var(--amber-500));
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+
+.orange-btn:hover {
+  filter: brightness(1.06);
+}
+
+.orange-btn:active {
+  transform: translateY(1px);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.link-btn {
+  display: block;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--teal-300);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+/* ================= REGISTER ================= */
+
+.register-title {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 90px;
+}
+
+.register-title h2 {
+  margin: 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.register-title p {
+  font-size: 14px;
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.register-card {
+  width: 480px;
+  padding: 30px 44px 34px;
+  margin-top: 28px;
+}
+
+.register-card label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 7px 2px;
+  color: var(--muted);
+}
+
+.name-row {
+  display: flex;
+  gap: 16px;
+}
+
+.name-row input {
+  width: 50%;
+}
+
+.register-card input {
+  height: 42px;
+  margin-bottom: 14px;
+}
+
+.date-input {
+  color-scheme: light;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.date-input:not(:focus):invalid {
+  color: #7c8a94;
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+  filter: invert(38%) sepia(20%) saturate(1000%) hue-rotate(130deg) brightness(90%);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.date-input::-webkit-calendar-picker-indicator:hover {
+  background: rgba(47, 158, 147, 0.14);
+}
+
+.hint {
+  margin: -8px 0 16px 2px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.gender-container {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.gender-select {
+  width: 100%;
+  height: 42px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--foam);
+  color: var(--ink);
+  padding: 0 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease;
+}
+
+.gender-select:hover {
+  box-shadow: 0 0 0 3px rgba(95, 201, 189, 0.18);
+}
+
+.arrow {
+  font-size: 22px;
+  line-height: 10px;
+  color: #7c8a94;
+  font-weight: bold;
+}
+
+.gender-options {
+  position: absolute;
+  right: 0;
+  top: 48px;
+  width: 100%;
+  background: var(--foam);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 18px 34px -14px rgba(2, 10, 20, 0.55);
+  z-index: 10;
+}
+
+.gender-options button {
+  width: 100%;
+  height: 38px;
+  border: none;
+  background: var(--foam);
+  color: var(--ink);
+  font-size: 14px;
+  font-family: inherit;
+  text-align: left;
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+.gender-options button:hover {
+  background: #e9edec;
+}
+
+.gender-options button.selected {
+  color: var(--teal-500);
+  font-weight: 600;
+}
+
+.register-card .orange-btn {
+  margin-top: 6px;
+}
+
+.account-link {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.account-link span {
+  color: var(--teal-300);
+  font-weight: 600;
+}
+
+.account-link:hover span {
+  text-decoration: underline;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 600px) {
+  .login-card {
+    width: 90%;
+    padding: 30px 26px;
+  }
+
+  .register-card {
+    width: 90%;
+    padding: 26px 24px;
+  }
+
+  .name-row {
+    gap: 10px;
+  }
+
+  .auth-logo {
+    margin-top: 44px;
+  }
+
+  .register-title {
+    margin-top: 50px;
+  }
+}
