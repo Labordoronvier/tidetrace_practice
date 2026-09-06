@@ -222,7 +222,7 @@ function DashboardHome({ onLogout }) {
               between people and the places we're helping protect.
             </p>
             <div className="hero-buttons">
-              <Button primary>Log a new trace</Button>
+              <Button primary>Start Tracing — it's free</Button>
               <Button onDark>See how it works</Button>
             </div>
             <div className="community">
