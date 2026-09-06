@@ -74,7 +74,7 @@ function BackgroundWaves() {
  * successfully logs in or creates an account, and the parent decides what
  * screen comes next (see App.jsx).
  */
-function LoginForm({ onAuthenticated }) {
+function LoginForm({ onAuthenticated, onForgotPassword }) {
   const [page, setPage] = useState("login");
   const [genderOpen, setGenderOpen] = useState(false);
   const [gender, setGender] = useState("");
@@ -127,7 +127,11 @@ function LoginForm({ onAuthenticated }) {
                 <input type="checkbox" />
                 <span>Remember me</span>
               </label>
-              <button type="button" className="forgot-link">
+              <button
+                type="button"
+                className="forgot-link"
+                onClick={() => onForgotPassword?.()}
+              >
                 Forgot password?
               </button>
             </div>
