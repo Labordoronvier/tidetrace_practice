@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./dashboard-home.css";
 
 /* ---------------- Icons ---------------- */
@@ -25,7 +26,7 @@ function WaveMark({ className = "logo-mark" }) {
 function PulseIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none">
-      <path d="M3 12h4l2-6 4 12 2-6h6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M3 12h4l2-6 4 12 2-6h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -33,19 +34,19 @@ function PulseIcon() {
 function CheckCircleIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="8.6" stroke="currentColor" strokeWidth="1.7" />
-      <path d="M8 12.3l2.6 2.6L16 9.4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="12" cy="12" r="8.6" stroke="currentColor" strokeWidth="2" />
+      <path d="M8 12.3l2.6 2.6L16 9.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-function NetworkIcon() {
+function NetworkIcon({ strokeWidth = 1.9 }) {
   return (
     <svg viewBox="0 0 24 24" fill="none">
-      <circle cx="6" cy="7" r="2.1" stroke="currentColor" strokeWidth="1.6" />
-      <circle cx="18" cy="7" r="2.1" stroke="currentColor" strokeWidth="1.6" />
-      <circle cx="12" cy="18" r="2.1" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M7.7 8.4L10.4 16M16.3 8.4L13.6 16M8.1 7H15.9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="6" cy="7" r="2.1" stroke="currentColor" strokeWidth={strokeWidth} />
+      <circle cx="18" cy="7" r="2.1" stroke="currentColor" strokeWidth={strokeWidth} />
+      <circle cx="12" cy="18" r="2.1" stroke="currentColor" strokeWidth={strokeWidth} />
+      <path d="M7.7 8.4L10.4 16M16.3 8.4L13.6 16M8.1 7H15.9" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" />
     </svg>
   );
 }
@@ -56,7 +57,7 @@ function HeartIcon() {
       <path
         d="M12 19.5s-6.8-4.3-9-8.3C1.3 7.7 2.3 4.7 5.2 4c2-.5 3.8.4 4.8 2 .1.2.3.2.4 0 1-1.6 2.8-2.5 4.8-2 2.9.7 3.9 3.7 2.2 7.2-2.2 4-9 8.3-9 8.3z"
         stroke="currentColor"
-        strokeWidth="1.6"
+        strokeWidth="1.9"
         strokeLinejoin="round"
       />
     </svg>
@@ -64,6 +65,50 @@ function HeartIcon() {
 }
 
 /* ---------------- Content ---------------- */
+
+function HomeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M4 11.5L12 4l8 7.5" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M6 10v9.2a.8.8 0 0 0 .8.8h3.2v-5.4h4V20h3.2a.8.8 0 0 0 .8-.8V10" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function PinIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M12 21s7-6.1 7-11.4A7 7 0 0 0 5 9.6C5 14.9 12 21 12 21z" stroke="currentColor" strokeWidth="2.1" strokeLinejoin="round" />
+      <circle cx="12" cy="9.5" r="2.4" stroke="currentColor" strokeWidth="2.1" />
+    </svg>
+  );
+}
+
+function BookIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M4 5.2c2.3-.9 5-.9 8 .6 3-1.5 5.7-1.5 8-.6v13.6c-2.3-.9-5-.9-8 .6-3-1.5-5.7-1.5-8-.6V5.2z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      <path d="M12 5.8V19" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  );
+}
+
+function UserIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="8.2" r="3.4" stroke="currentColor" strokeWidth="2.1" />
+      <path d="M4.8 19.6c1.3-3.4 4-5 7.2-5s5.9 1.6 7.2 5" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+const navItems = [
+  { id: "home", label: "Home", icon: <HomeIcon /> },
+  { id: "traces", label: "Traces", icon: <PinIcon /> },
+  { id: "communities", label: "Communities", icon: <NetworkIcon strokeWidth={2.1} /> },
+  { id: "education", label: "Education", icon: <BookIcon /> },
+  { id: "profile", label: "Profile", icon: <UserIcon /> },
+];
 
 const features = [
   {
@@ -182,6 +227,26 @@ function CardGrid({ cards }) {
   );
 }
 
+function PillNav({ active, onSelect }) {
+  return (
+    <nav className="pill-nav" aria-label="Main navigation">
+      {navItems.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          className={`nav-icon ${item.id === active ? "active" : ""}`}
+          title={item.label}
+          aria-label={item.label}
+          aria-current={item.id === active ? "page" : undefined}
+          onClick={() => onSelect?.(item.id)}
+        >
+          {item.icon}
+        </button>
+      ))}
+    </nav>
+  );
+}
+
 /* ---------------- Page ---------------- */
 
 /**
@@ -191,15 +256,19 @@ function CardGrid({ cards }) {
  * decides that means going back to the login screen.
  */
 function DashboardHome({ onLogout }) {
+  const [activeNav, setActiveNav] = useState("home");
+
   return (
     <main className="dashboard-home">
       <header className="nav">
         <div className="container nav-inner">
           <Logo />
+          <PillNav active={activeNav} onSelect={setActiveNav} />
           <div className="nav-actions">
             <button className="login" onClick={() => onLogout?.()}>
               Log out
             </button>
+            <Button primary>Join TideTrace</Button>
           </div>
         </div>
       </header>
@@ -222,7 +291,7 @@ function DashboardHome({ onLogout }) {
               between people and the places we're helping protect.
             </p>
             <div className="hero-buttons">
-              <Button primary>Start Tracing — it's free</Button>
+              <Button primary>Log a new trace</Button>
               <Button onDark>See how it works</Button>
             </div>
             <div className="community">
