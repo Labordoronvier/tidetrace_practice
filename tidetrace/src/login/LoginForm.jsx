@@ -230,7 +230,7 @@ function LoginForm({ onAuthenticated, onForgotPassword }) {
             <button
               type="button"
               className="orange-btn"
-              onClick={() => onAuthenticated?.()}
+              onClick={() => setPage("login")}
             >
               Create an account
             </button>
